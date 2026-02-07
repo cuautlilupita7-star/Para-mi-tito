@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Tito</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            background: black; 
+            color: white; 
+            margin: 0; 
+            overflow: hidden; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            height: 100vh; 
+        }
+
+        /* TÍTULO CON FUENTE BONITA Y COLOR MORADO */
+        h1 { 
+            text-align: center; 
+            margin-top: 20px; 
+            font-family: 'Dancing Script', cursive; /* Fuente elegante */
+            font-size: 3.5em;
+            color: #bc13fe; 
+            text-shadow: 0 0 15px rgba(188, 19, 254, 0.6);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Estrellas de fondo */
+        .estrella {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: parpadeo var(--d) infinite;
+        }
+
+        @keyframes parpadeo {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Mensajes flotantes con fondo morado */
+        .mensaje { 
+            position: absolute; 
+            white-space: nowrap; 
+            color: white; 
+            font-weight: bold;
+            padding: 10px 20px;
+            background: rgba(80, 0, 120, 0.7); 
+            border-radius: 20px;
+            text-shadow: 0 0 10px #fff, 0 0 20px #bc13fe; 
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.5);
+            animation: flotar 12s linear forwards; 
+            z-index: 5;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(110vh) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.1); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Para mi Tito <3</h1>
+
+    <script>
+        // Crear estrellas de fondo
+        function crearFondo() {
+            for (let i = 0; i < 100; i++) {
+                const estrella = document.createElement("div");
+                estrella.className = "estrella";
+                const tamano = Math.random() * 3 + "px";
+                estrella.style.width = tamano;
+                estrella.style.height = tamano;
+                estrella.style.top = Math.random() * 100 + "vh";
+                estrella.style.left = Math.random() * 100 + "vw";
+                estrella.style.setProperty('--d', (Math.random() * 3 + 2) + "s");
+                document.body.appendChild(estrella);
+            }
+        }
+        crearFondo();
+
+        const frases = [
+            "Tu zapateado es el latido de mi corazón",
+            "Eres el movimiento más bello de la danza",
+            "Eres un gran bailarin",
+            "Estoy orgullosa de ti",
+            "Eres arte en cada paso que das",
+            "Orgullosa de tener un novio como tu",
+            "Tu pasión por el baile ilumina cualquier escenario",
+            "Orgullosa de verte bailar",
+            "Tu elegancia al bailar es única",
+            "Eres capaz de lograr mucho más de lo que crees",
+            "No eres común, eres luz",
+            "Lo estás haciendo muy bien",
+            "Eres todos los colores en uno con su máxima intensidad"
+        ];
+
+        let carril = 0;
+
+        function crearMensaje() {
+            const m = document.createElement("div");
+            m.className = "mensaje";
+            m.textContent = frases[Math.floor(Math.random() * frases.length)];
+            
+            m.style.left = (carril * 15 + Math.random() * 10) + "vw";
+            carril = (carril + 1) % 6;
+
+            document.body.appendChild(m);
+            setTimeout(() => m.remove(), 12000);
+        }
+
+        setInterval(crearMensaje, 2500);
+        crearMensaje();
+    </script>
+</body>
+</html>
+  
